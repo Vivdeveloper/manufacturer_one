@@ -1,0 +1,16 @@
+frappe.ui.form.on("Sales Order", {
+	on_submit: function(frm){
+		generate_production_plan(frm)
+	}
+})
+function generate_production_plan(frm){
+	frappe.call({
+		method: "manufacturing_customizations.customizations.sales_order.make_production_plan",
+		args:{
+			sales_order : frm.doc.name
+		},
+		callback: function(r) {
+			
+		}
+	});
+}
